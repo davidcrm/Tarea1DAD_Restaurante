@@ -13,49 +13,76 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="600.0" styleClass="primary-color" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividad1_ut5_davidcarreno.RestauranteController">
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="600.0" styleClass="primary-color" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividad1_ut5_davidcarreno.RestauranteController">
    <children>
-      <VBox fx:id="labelBox" layoutX="30.0" layoutY="14.0" prefHeight="288.0" prefWidth="118.0">
+      <VBox fx:id="labelBox" layoutX="30.0" layoutY="26.0" prefHeight="288.0" prefWidth="118.0">
          <children>
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 10px;" text="Hamburguesa:" />
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 10px;" text="Cerveza:" />
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 10px;" text="Gaseosa:" />
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 10px;" text="Ensalada:" />
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 10px;" text="Salchichas:" />
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 10px;" text="Refresco:" />
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 10px;" text="Sopa:" />
-            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 10px;" text="Postre:" />
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 9px;" text="Hamburguesa:" />
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 9px;" text="Cerveza:" />
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 9px;" text="Gaseosa:" />
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 9px;" text="Ensalada:" />
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 9px;" text="Sandwich:" />
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 9px;" text="Refresco:" />
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 9px;" text="Perrito:" />
+            <Label alignment="CENTER" contentDisplay="CENTER" style="-fx-padding: 9px;" text="Postre:" />
          </children>
       </VBox>
-      <VBox fx:id="textFBox" alignment="CENTER" layoutX="148.0" layoutY="6.0" prefHeight="288.0" prefWidth="101.0" style="-fx-spacing: 10px; -fx-padding: 10px;">
+      <VBox fx:id="textFBox" layoutX="148.0" layoutY="29.0" prefHeight="288.0" prefWidth="101.0" style="-fx-spacing: 7px;">
          <children>
-            <TextField prefHeight="24.0" prefWidth="97.0" style="-fx-padding: 8px;" styleClass="secondary-color" />
-            <TextField prefHeight="24.0" prefWidth="97.0" style="-fx-padding: 8px;" styleClass="secondary-color" />
-            <TextField prefHeight="24.0" prefWidth="97.0" style="-fx-padding: 8px;" styleClass="secondary-color" />
-            <TextField prefHeight="24.0" prefWidth="97.0" style="-fx-padding: 8px;" styleClass="secondary-color" />
-            <TextField prefHeight="24.0" prefWidth="97.0" style="-fx-padding: 8px;" styleClass="secondary-color" />
-            <TextField prefHeight="24.0" prefWidth="97.0" style="-fx-padding: 8px;" styleClass="secondary-color" />
-            <TextField alignment="CENTER" prefHeight="24.0" prefWidth="97.0" style="-fx-padding: 8px;" styleClass="secondary-color" />
+            <TextField fx:id="hamburguesa" alignment="CENTER" prefHeight="24.0" prefWidth="97.0" promptText="..." style="-fx-scale-x: 0.5; -fx-scale-y: 0.9; -fx-padding: 5px;" styleClass="secondary-color">
+               <font>
+                  <Font name="JetBrains Mono NL Light" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="cerveza" alignment="CENTER" prefHeight="15.0" prefWidth="81.0" promptText="..." style="-fx-scale-x: 0.5; -fx-scale-y: 0.9; -fx-padding: 5px;" styleClass="secondary-color">
+               <font>
+                  <Font name="JetBrains Mono NL Light" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="gaseosa" alignment="CENTER" prefHeight="24.0" prefWidth="97.0" promptText="..." style="-fx-scale-x: 0.5; -fx-scale-y: 0.9; -fx-padding: 5px;" styleClass="secondary-color">
+               <font>
+                  <Font name="JetBrains Mono NL Light" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="ensalada" alignment="CENTER" prefHeight="24.0" prefWidth="97.0" promptText="..." style="-fx-scale-x: 0.5; -fx-scale-y: 0.9; -fx-padding: 5px;" styleClass="secondary-color">
+               <font>
+                  <Font name="JetBrains Mono NL Light" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="sandwich" alignment="CENTER" prefHeight="24.0" prefWidth="97.0" promptText="..." style="-fx-scale-x: 0.5; -fx-scale-y: 0.9; -fx-padding: 5px;" styleClass="secondary-color">
+               <font>
+                  <Font name="JetBrains Mono NL Light" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="refresco" alignment="CENTER" prefHeight="24.0" prefWidth="97.0" promptText="..." style="-fx-scale-x: 0.5; -fx-scale-y: 0.9; -fx-padding: 5px;" styleClass="secondary-color">
+               <font>
+                  <Font name="JetBrains Mono NL Light" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="perrito" alignment="CENTER" prefHeight="24.0" prefWidth="97.0" promptText="..." style="-fx-scale-x: 0.5; -fx-scale-y: 0.9; -fx-padding: 5px;" styleClass="secondary-color">
+               <font>
+                  <Font name="JetBrains Mono NL Light" size="13.0" />
+               </font></TextField>
+            <TextField fx:id="postre" alignment="CENTER" prefHeight="24.0" prefWidth="97.0" promptText="..." style="-fx-scale-x: 0.5; -fx-scale-y: 0.9; -fx-padding: 5px;" styleClass="secondary-color">
+               <font>
+                  <Font name="JetBrains Mono NL Light" size="13.0" />
+               </font>
+            </TextField>
          </children>
       </VBox>
       <TableView fx:id="tablaTicket" layoutX="264.0" layoutY="7.0" prefHeight="219.0" prefWidth="209.0" styleClass="table-row-cell">
         <columns>
-          <TableColumn id="header" fx:id="columnaNombre" prefWidth="111.0" resizable="false" sortType="DESCENDING" sortable="false" text="Menu">
+          <TableColumn id="header" fx:id="columnaNombre" prefWidth="111.0" resizable="false" sortType="DESCENDING" text="Menu">
                <styleClass>
                   <String fx:value="table-cell" />
                   <String fx:value="header" />
                </styleClass></TableColumn>
-          <TableColumn id="header" fx:id="columnaPrecio" prefWidth="98.0" resizable="false" sortable="false" text="Precio S/.">
+          <TableColumn id="header" fx:id="columnaPrecio" prefWidth="98.0" resizable="false" text="Precio S/.">
                <styleClass>
                   <String fx:value="table-cell" />
                   <String fx:value="header" />
                </styleClass></TableColumn>
         </columns>
       </TableView>
-      <Button layoutX="490.0" layoutY="61.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="94.0" styleClass="boton" text="Aceptar" />
-      <Button layoutX="490.0" layoutY="99.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="94.0" styleClass="boton" text="Limpiar" />
-      <Button layoutX="490.0" layoutY="141.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="94.0" styleClass="boton" text="Salir" />
+      <Button fx:id="aceptarButton" layoutX="490.0" layoutY="61.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="32.0" prefWidth="94.0" styleClass="boton" text="Aceptar" />
+      <Button layoutX="490.0" layoutY="99.0" mnemonicParsing="false" onAction="#limpiar" prefHeight="32.0" prefWidth="94.0" styleClass="boton" text="Limpiar" />
+      <Button layoutX="490.0" layoutY="141.0" mnemonicParsing="false" onAction="#cerrar" prefHeight="70.0" prefWidth="94.0" styleClass="boton" text="Salir" />
       <GridPane fx:id="resultadoGridPane" alignment="CENTER" layoutX="298.0" layoutY="249.0" prefHeight="70.0" prefWidth="279.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
@@ -66,8 +93,8 @@
             <RowConstraints maxHeight="40.0" minHeight="8.0" prefHeight="35.0" vgrow="SOMETIMES" />
          </rowConstraints>
          <children>
-            <TextField alignment="CENTER" editable="false" prefHeight="12.0" prefWidth="180.0" styleClass="secondary-color" GridPane.columnIndex="1" />
-            <TextField alignment="CENTER" editable="false" prefHeight="12.0" prefWidth="180.0" styleClass="secondary-color" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+            <TextField fx:id="totalTF" alignment="CENTER" editable="false" prefHeight="12.0" prefWidth="180.0" styleClass="secondary-color" GridPane.columnIndex="1" />
+            <TextField fx:id="impuestoTF" alignment="CENTER" editable="false" prefHeight="12.0" prefWidth="180.0" styleClass="secondary-color" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label prefHeight="14.0" prefWidth="107.0" style="-fx-padding: 5px;" text="Venta total S/." />
             <Label text="Impuesto S/." GridPane.rowIndex="1" />
          </children>
