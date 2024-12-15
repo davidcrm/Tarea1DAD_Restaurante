@@ -7,6 +7,7 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -14,6 +15,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 
 import java.util.List;
@@ -26,7 +28,7 @@ public class RestauranteController {
     @FXML
     private ImageView imagenModo;
     @FXML
-    private VBox labelBox,textFBox;
+    private VBox buttonBox;
     @FXML
     private GridPane resultadoGridPane;
     @FXML
@@ -42,13 +44,13 @@ public class RestauranteController {
     public void initialize() {
         parent.getStylesheets().add(getClass().getResource("/org/example/actividad1_ut5_davidcarreno/styles/lightMode.css").toExternalForm());
         listaProductos = FXCollections.observableArrayList(
-                new Producto("Gaseosa", 3.0),
-                new Producto("Refresco", 2.0),
-                new Producto("Cerveza", 2.5),
-                new Producto("Ensalada", 3.5),
                 new Producto("Hamburguesa", 3.0),
-                new Producto("Perrito", 2.5),
+                new Producto("Cerveza", 2.5),
+                new Producto("Gaseosa", 3.0),
+                new Producto("Ensalada", 3.5),
                 new Producto("Sandwich", 2.5),
+                new Producto("Refresco", 2.0),
+                new Producto("Perrito", 2.5),
                 new Producto("Postre", 3.0)
 
         );
@@ -57,22 +59,17 @@ public class RestauranteController {
         columnaPrecio.setCellValueFactory(cellData -> cellData.getValue().cantidadProperty().asObject());
 
         tablaTicket.setItems(listaProductos);
-
-        inicializarListeners();
+        iniciarListeners();
     }
     // Metodo para cambiar el modo claro u oscuro
-    public void cambiarModo(ActionEvent event){
+    public void cambiarModo(){
         isModoClaro = !isModoClaro;
         if (isModoClaro){
             setModoClaro();
-            aplicarModoClaro(labelBox);
-            aplicarModoClaro(textFBox);
             aplicarModoClaro(resultadoGridPane);
         }
         else {
             setModoOscuro();
-            aplicarModoOscuro(labelBox);
-            aplicarModoOscuro(textFBox);
             aplicarModoOscuro(resultadoGridPane);
         }
     }
@@ -120,30 +117,8 @@ public class RestauranteController {
     private double calcularTotal() {
         double total = 0.0;
         double impuesto = 0.0;
-        for (Node child : textFBox.getChildrenUnmodifiable()) {
-            // Verifica que el Nodo sea un TextField
-            if (child instanceof TextField) {
-                TextField tf = (TextField) child;
-                // Ignorar TextFields vacíos o nulos
-                String texto = tf.getText();
-                if (texto != null && !texto.isBlank()) {
-                    try {
-                        // extraer el precio y la cantidad del texfield
-                        Double cantidad = Double.valueOf(texto);
-                        Double precio = obtenerPrecio(child.getId());
-                        // añade al total la multiplicacion de la cantidad añadida por el precio del producto
-                        total += cantidad * precio;
-                        // se suma a la variable impuesto el 0,7% de cada producto seleccionado asumiendo que el impuesto ya está incluido en cada precio
-                        impuesto += cantidad * (precio - precio / 1.07);
-                    } catch (NumberFormatException e) {
-                        // En caso de escribir un caracter que no sea un número se informa al usuario
-                        Utils.mostrarDialogo("Error con el tipo de valor introducido.", "Introduzca un valor númerico.");
-                        // y se pone el textfield en blanco
-                        tf.setText("");
-                    }
-                }
-            }
-        }
+
+
         // Una vez iterados todos los textfields se muestra el total del pedido
         totalTF.setText(String.format("%.2f", total) + "€");
         // y el impuesto correspodiente
@@ -163,35 +138,43 @@ public class RestauranteController {
             if ((nombreProducto.substring(0, 1).toUpperCase() + nombreProducto.substring(1).toLowerCase()).equals(nombre)){
                 Producto productoFinal = (Producto) listaOrdenada.get(i);
                 // Devolvemos el precio de ese producto
-                return productoFinal.getPrecio();
+                return productoFinal.getCantidad();
             }
         }
         // En caso de no encontrarlo, devuelve 0.0
         return 0.0;
     }
+    @FXML
+    private void iniciarListeners(){
+        int i = 0;
+       for (Node hijo : buttonBox.getChildrenUnmodifiable()){
+           Producto producto = listaProductos.get(i);
+           if (hijo instanceof HBox){
+               // Recupera el primer boton (suma)
+               Button botonSuma = (Button) ((HBox) hijo).getChildren().get(0);
+               // Recupera el segundo boton (resta)
+               Button botonResta = (Button) ((HBox) hijo).getChildren().get(2);
+                // Añade los eventos a cada botón
+               botonSuma.setOnAction(event -> aumentarCantidad(producto));
+               botonResta.setOnAction(event -> disminuirCantidad(producto));
+           }
+           i++;
+       }
+    }
 
-    private void inicializarListeners() {
-        // Bucle para recorrer todos los textfields
-        for (Node child : textFBox.getChildrenUnmodifiable()) {
-            // Si el nodo es un objeto TextField, le añade un listener que llama al método calcularTotal()
-            if (child instanceof TextField) {
-                TextField textField = (TextField) child;
-                // Añadir listener para actualizar el total en cada cambio que se produzca
-                textField.textProperty().addListener((observable, oldValue, newValue) -> {
-                    calcularTotal(); // Llama a un método que calcula y actualiza el total
-                });
-            }
-        }
+    private void aumentarCantidad(Producto p){
+        p.anyadirAlCarrito();
+        System.out.println(p.getCantidadEnCarrito());
+        System.out.println(p.getSubtotal());
+    }
+    private void disminuirCantidad(Producto p){
+        p.eliminarDelCarrito();
+        System.out.println(p.getCantidadEnCarrito());
     }
 
     @FXML
     private void limpiar(){
-        // Recorre todos los textfields y los vacía
-        for (Node child : textFBox.getChildrenUnmodifiable()) {
-            if (child instanceof TextField) {
-                ((TextField) child).setText("");
-            }
-        }
+
     }
     @FXML
     private void cerrar(){
