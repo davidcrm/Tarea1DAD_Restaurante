@@ -10,7 +10,7 @@ public class Utils {
         alert.setHeaderText(null);
         alert.setContentText(mensaje); // Establece el mensaje pasado por parámetro
 
-        // Muestra el diálogo y esperar que el usuario lo cierre
+        // Muestra el diálogo y espera que el usuario lo cierre
         alert.showAndWait();
     }
 }

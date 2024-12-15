@@ -3,11 +3,11 @@ package org.example.actividad1_ut5_davidcarreno;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
-public class Pedido {
+public class Producto {
     private final SimpleStringProperty nombre;
     private final SimpleDoubleProperty cantidad;
 
-    public Pedido(String nombre, Double cantidad) {
+    public Producto(String nombre, Double cantidad) {
         this.nombre = new SimpleStringProperty(nombre);
         this.cantidad = new SimpleDoubleProperty(cantidad);
     }
