@@ -44,12 +44,14 @@
     -fx-background-color: #282828;
     -fx-text-fill: #E7E7E7;
 }
-.item{
+.item-carrito {
+    -fx-border-color: black;
+    -fx-background-color: #383838;
+    -fx-border-radius: 100;
+    -fx-spacing: 25px;
     -fx-alignment: center;
-    -fx-spacing: 30px;
-    -fx-font-size: 12px;
+}
+.texto{
     -fx-text-fill: #E7E7E7;
-    -fx-te
-    -fx-border-color: #E7E7E7;
-    -fx-border-radius: 100
+    -fx-alignment: center;
 }

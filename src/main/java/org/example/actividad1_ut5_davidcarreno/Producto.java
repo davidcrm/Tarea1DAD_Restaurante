@@ -1,23 +1,18 @@
 package org.example.actividad1_ut5_davidcarreno;
 
-import javafx.beans.property.IntegerProperty;
-import javafx.beans.property.SimpleIntegerProperty;
-import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
+import javafx.beans.property.SimpleStringProperty;
 
 public class Producto {
     private final SimpleStringProperty nombre;
-    private final SimpleDoubleProperty cantidad;
+    private final SimpleDoubleProperty precio;
 
-    private IntegerProperty cantidadEnCarrito;
-
-    public Producto(String nombre, Double cantidad) {
+    public Producto(String nombre, Double precio) {
         this.nombre = new SimpleStringProperty(nombre);
-        this.cantidad = new SimpleDoubleProperty(cantidad);
-        this.cantidadEnCarrito = new SimpleIntegerProperty(0);
+        this.precio = new SimpleDoubleProperty(precio);
     }
 
-    // Getter y setter para el nombre
+    // Getters y setters
     public String getNombre() {
         return nombre.get();
     }
@@ -26,57 +21,33 @@ public class Producto {
         this.nombre.set(nombre);
     }
 
-    // Getter y setter para la cantidad
-    public Double getCantidad() {
-        return cantidad.get();
+    public Double getPrecio() {
+        return precio.get();
     }
 
-    public void setCantidad(Double cantidad) {
-        this.cantidad.set(cantidad);
+    public void setPrecio(Double precio) {
+        this.precio.set(precio);
     }
 
-    // Propiedades para las columnas
+    // Propiedades (para compatibilidad con JavaFX)
     public SimpleStringProperty nombreProperty() {
         return nombre;
     }
 
-    public SimpleDoubleProperty cantidadProperty() {
-        return cantidad;
+    public SimpleDoubleProperty precioProperty() {
+        return precio;
     }
 
-    // Getter y setter para la cantidad que hay en el carrito
-    public int getCantidadEnCarrito() {
-        return cantidadEnCarrito.get();
+    @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (obj == null || getClass() != obj.getClass()) return false;
+        Producto producto = (Producto) obj;
+        return nombre.get().equals(producto.getNombre());
     }
 
-    public void setCantidadEnCarrito(IntegerProperty cantidadEnCarrito) {
-        this.cantidadEnCarrito = cantidadEnCarrito;
-    }
-
-    public IntegerProperty cantidadEnCarritoProperty() {
-        return cantidadEnCarrito;
-    }
-
-    public void aumentarCantidadProducto() {
-        // suma uno a la cantidad que hay guarda en el carrito del producto
-        this.cantidadEnCarrito.set(this.cantidadEnCarrito.get() + 1);
-    }
-
-    public double getSubtotal() {
-        if (this.getCantidadEnCarrito() > 0 ) {
-            return cantidadEnCarrito.get() * cantidad.get();
-        }
-        return 0.0;
-    }
-
-    public void eliminarDelCarrito() {
-        // Comprueba si hay en el carrito y lo elimina
-        if (this.cantidadEnCarrito.get() > 0) {
-            this.cantidadEnCarrito.set(this.cantidadEnCarrito.get() - 1);
-        }
-        else {
-            // si no, establece la cantidad a 0
-            this.cantidadEnCarrito.set(0);
-        }
+    @Override
+    public int hashCode() {
+        return nombre.get().hashCode();
     }
 }
