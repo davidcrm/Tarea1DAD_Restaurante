@@ -3,14 +3,10 @@ package org.example.actividad1_ut5_davidcarreno;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.Parent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
@@ -28,7 +24,7 @@ public class RestauranteController {
     @FXML
     private ImageView imagenModo;
     @FXML
-    private VBox buttonBox;
+    private VBox buttonBox, carritoBox;
     @FXML
     private GridPane resultadoGridPane;
     @FXML
@@ -36,10 +32,12 @@ public class RestauranteController {
     @FXML
     private TableColumn<Producto, Double> columnaPrecio;
     @FXML
-    private ObservableList<Producto> listaProductos;
-    @FXML
     private TextField totalTF, impuestoTF;
+
+    private ObservableList<Producto> listaProductos;
     private boolean isModoClaro = true;
+    private Carrito carrito = new Carrito();
+
     @FXML
     public void initialize() {
         parent.getStylesheets().add(getClass().getResource("/org/example/actividad1_ut5_davidcarreno/styles/lightMode.css").toExternalForm());
@@ -67,10 +65,12 @@ public class RestauranteController {
         if (isModoClaro){
             setModoClaro();
             aplicarModoClaro(resultadoGridPane);
+            aplicarModoClaro(carritoBox);
         }
         else {
             setModoOscuro();
             aplicarModoOscuro(resultadoGridPane);
+            aplicarModoOscuro(carritoBox);
         }
     }
     //Metodos para cambiar los archivos de referencia, tanto de estilos como imágenes usando el classpath
@@ -113,10 +113,11 @@ public class RestauranteController {
     }
 
     @FXML
-    // Método para calcular el total de la venta y el impuesto
+    // Metodo para calcular el total de la venta y el impuesto
     private double calcularTotal() {
         double total = 0.0;
         double impuesto = 0.0;
+
 
 
         // Una vez iterados todos los textfields se muestra el total del pedido
@@ -162,14 +163,54 @@ public class RestauranteController {
        }
     }
 
+    private void actualizarCarrito(Producto p){
+        ImageView imagenProducto = new ImageView(new Image(getClass().getResource("/org/example/actividad1_ut5_davidcarreno/img/" + p.getNombre() + ".png").toExternalForm()));
+        imagenProducto.setFitWidth(40);
+        imagenProducto.setFitHeight(40);
+        Node nombreProducto = (Node) new Label(p.getNombre());
+        Label cantidadProducto = new Label( "x" + p.getCantidadEnCarrito());
+        HBox itemCarrito = new HBox();
+
+        if (carrito.contains(p)){
+            p.aumentarCantidadProducto();
+            carrito.anyadirProducto(p);
+            totalTF.setText(String.valueOf(carrito.getTotal()));
+            impuestoTF.setText(String.format("%.2f", (carrito.getTotal() * 0.07)) + "€");
+        } else {
+            itemCarrito.getChildren().addAll(imagenProducto,nombreProducto,cantidadProducto);
+            itemCarrito.getStyleClass().addLast("item");
+            carritoBox.getChildren().addLast(itemCarrito);
+            carrito.anyadirProducto(p);
+            totalTF.setText(String.valueOf(carrito.getTotal()));
+            impuestoTF.setText(String.format("%.2f", (carrito.getTotal() * 0.07)) + "€");
+
+            p.cantidadEnCarritoProperty().addListener((observable, oldValue, newValue) -> {
+                if (newValue.intValue() == 0) {
+                    p.eliminarDelCarrito();
+                    p.eliminarDelCarrito();
+                    carritoBox.getChildren().remove(itemCarrito);
+                    carrito.removeProducto(p);
+                    carrito.setTotal(carrito.getTotal() - p.getSubtotal());
+                } else {
+                    cantidadProducto.setText("x" + newValue);
+                }});
+        carrito.listarCarrito();
+        System.out.println(carrito.getTotal());
+        }
+
+
+    }
+
     private void aumentarCantidad(Producto p){
-        p.anyadirAlCarrito();
+        p.aumentarCantidadProducto();
         System.out.println(p.getCantidadEnCarrito());
         System.out.println(p.getSubtotal());
+        actualizarCarrito(p);
     }
     private void disminuirCantidad(Producto p){
         p.eliminarDelCarrito();
         System.out.println(p.getCantidadEnCarrito());
+
     }
 
     @FXML

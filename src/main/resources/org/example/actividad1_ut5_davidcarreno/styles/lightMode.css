@@ -42,3 +42,11 @@
     -fx-background-color: #FFFFFF;
     -fx-text-fill: #282828;
 }
+.item{
+    -fx-alignment: center;
+    -fx-text-fill: #282828;
+    -fx-font-size: 12px;
+    -fx-spacing: 30px;
+    -fx-border-color: black;
+    -fx-border-radius: 100;
+}

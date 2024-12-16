@@ -1,5 +1,7 @@
 package org.example.actividad1_ut5_davidcarreno;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 
@@ -7,12 +9,12 @@ public class Producto {
     private final SimpleStringProperty nombre;
     private final SimpleDoubleProperty cantidad;
 
-    private int cantidadEnCarrito;
+    private IntegerProperty cantidadEnCarrito;
 
     public Producto(String nombre, Double cantidad) {
         this.nombre = new SimpleStringProperty(nombre);
         this.cantidad = new SimpleDoubleProperty(cantidad);
-        this. cantidadEnCarrito = 0;
+        this.cantidadEnCarrito = new SimpleIntegerProperty(0);
     }
 
     // Getter y setter para el nombre
@@ -44,28 +46,37 @@ public class Producto {
 
     // Getter y setter para la cantidad que hay en el carrito
     public int getCantidadEnCarrito() {
-        return cantidadEnCarrito;
+        return cantidadEnCarrito.get();
     }
 
-    public void setCantidadEnCarrito(int cantidadEnCarrito) {
+    public void setCantidadEnCarrito(IntegerProperty cantidadEnCarrito) {
         this.cantidadEnCarrito = cantidadEnCarrito;
     }
 
-    public void anyadirAlCarrito() {
+    public IntegerProperty cantidadEnCarritoProperty() {
+        return cantidadEnCarrito;
+    }
+
+    public void aumentarCantidadProducto() {
         // suma uno a la cantidad que hay guarda en el carrito del producto
-        this.cantidadEnCarrito++;
+        this.cantidadEnCarrito.set(this.cantidadEnCarrito.get() + 1);
     }
+
     public double getSubtotal() {
-        return cantidadEnCarrito * cantidad.get();
+        if (this.getCantidadEnCarrito() > 0 ) {
+            return cantidadEnCarrito.get() * cantidad.get();
+        }
+        return 0.0;
     }
+
     public void eliminarDelCarrito() {
         // Comprueba si hay en el carrito y lo elimina
-        if (this.cantidadEnCarrito > 0) {
-            this.cantidadEnCarrito--;
+        if (this.cantidadEnCarrito.get() > 0) {
+            this.cantidadEnCarrito.set(this.cantidadEnCarrito.get() - 1);
         }
         else {
             // si no, establece la cantidad a 0
-            this.cantidadEnCarrito = 0;
+            this.cantidadEnCarrito.set(0);
         }
     }
 }

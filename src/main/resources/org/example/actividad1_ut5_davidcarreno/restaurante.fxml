@@ -3,6 +3,7 @@
 <?import java.lang.String?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -16,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="600.0" styleClass="primary-color" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividad1_ut5_davidcarreno.RestauranteController">
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="843.0" styleClass="primary-color" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividad1_ut5_davidcarreno.RestauranteController">
    <children>
       <VBox fx:id="buttonBox" layoutX="23.0" layoutY="14.0" prefHeight="303.0" prefWidth="230.0" style="-fx-spacing: 10px;">
          <children>
@@ -25,7 +26,7 @@
                   <Button fx:id="botonSumar" mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="+" />
                   <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;">
                      <image>
-                        <Image url="@img/hamburger.png" />
+                        <Image url="@img/Hamburguesa.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="-" />
@@ -36,7 +37,7 @@
                   <Button fx:id="botonSumar" mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="+" />
                   <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;">
                      <image>
-                        <Image url="@img/beer.png" />
+                        <Image url="@img/Cerveza.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="-" />
@@ -47,7 +48,7 @@
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="+" />
                   <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;">
                      <image>
-                        <Image url="@img/soda-can.png" />
+                        <Image url="@img/Gaseosa.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="-" />
@@ -58,7 +59,7 @@
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="+" />
                   <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;">
                      <image>
-                        <Image url="@img/salad.png" />
+                        <Image url="@img/Ensalada.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="-" />
@@ -69,7 +70,7 @@
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="+" />
                   <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;">
                      <image>
-                        <Image url="@img/sandwich.png" />
+                        <Image url="@img/Sandwich.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="-" />
@@ -80,7 +81,7 @@
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="+" />
                   <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;">
                      <image>
-                        <Image url="@img/soft-drink.png" />
+                        <Image url="@img/Refresco.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="-" />
@@ -91,7 +92,7 @@
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="+" />
                   <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;">
                      <image>
-                        <Image url="@img/hot-dog.png" />
+                        <Image url="@img/Perrito.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="-" />
@@ -102,7 +103,7 @@
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="+" />
                   <ImageView fitHeight="26.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;">
                      <image>
-                        <Image url="@img/dessert.png" />
+                        <Image url="@img/Postre.png" />
                      </image>
                   </ImageView>
                   <Button mnemonicParsing="false" prefHeight="19.0" prefWidth="27.0" style="-fx-scale-x: 1.5; -fx-scale-y: 1.5;" styleClass="boton" text="-" />
@@ -110,7 +111,7 @@
             </HBox>
          </children>
       </VBox>
-      <TableView fx:id="tablaTicket" layoutX="268.0" layoutY="22.0" prefHeight="219.0" prefWidth="209.0" styleClass="table-row-cell">
+      <TableView fx:id="tablaTicket" layoutX="283.0" layoutY="33.0" prefHeight="219.0" prefWidth="209.0" styleClass="table-row-cell">
         <columns>
           <TableColumn id="header" fx:id="columnaNombre" prefWidth="111.0" resizable="false" sortType="DESCENDING" text="Menu">
                <styleClass>
@@ -127,13 +128,10 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <Button fx:id="aceptarButton" layoutX="492.0" layoutY="92.0" mnemonicParsing="false" onAction="#aceptar" prefHeight="32.0" prefWidth="94.0" styleClass="boton" text="Aceptar" />
-      <Button layoutX="492.0" layoutY="132.0" mnemonicParsing="false" onAction="#limpiar" prefHeight="32.0" prefWidth="94.0" styleClass="boton" text="Limpiar" />
-      <Button layoutX="492.0" layoutY="171.0" mnemonicParsing="false" onAction="#cerrar" prefHeight="70.0" prefWidth="94.0" styleClass="boton" text="Salir" />
-      <GridPane fx:id="resultadoGridPane" alignment="CENTER" layoutX="291.0" layoutY="261.0" prefHeight="112.0" prefWidth="286.0">
+      <GridPane fx:id="resultadoGridPane" alignment="CENTER" layoutX="403.0" layoutY="302.0" prefHeight="70.0" prefWidth="295.0">
          <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
-            <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="127.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="159.0" />
          </columnConstraints>
          <rowConstraints>
             <RowConstraints maxHeight="42.0" minHeight="10.0" prefHeight="34.0" vgrow="SOMETIMES" />
@@ -142,7 +140,7 @@
          <children>
             <TextField fx:id="totalTF" alignment="CENTER" editable="false" prefHeight="12.0" prefWidth="180.0" styleClass="secondary-color" GridPane.columnIndex="1" />
             <TextField fx:id="impuestoTF" alignment="CENTER" editable="false" prefHeight="12.0" prefWidth="180.0" styleClass="secondary-color" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-            <Label prefHeight="14.0" prefWidth="107.0" text="Venta total S/.">
+            <Label prefHeight="21.0" prefWidth="124.0" text="Venta total S/.">
                <font>
                   <Font size="17.0" />
                </font></Label>
@@ -152,14 +150,43 @@
                </font></Label>
          </children>
       </GridPane>
-      <Button layoutX="516.0" layoutY="40.0" mnemonicParsing="false" onAction="#cambiarModo" styleClass="boton">
-         <graphic>
-            <ImageView fx:id="imagenModo" fitHeight="28.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@img/modo-claro.png" />
-               </image>
-            </ImageView>
-         </graphic>
-      </Button>
+      <VBox alignment="CENTER" layoutX="738.0" layoutY="33.0" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 10px;">
+         <children>
+            <Button mnemonicParsing="false" onAction="#cambiarModo" styleClass="boton">
+               <graphic>
+                  <ImageView fx:id="imagenModo" fitHeight="28.0" fitWidth="39.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@img/modo-claro.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Button>
+            <Button fx:id="aceptarButton" mnemonicParsing="false" onAction="#aceptar" prefHeight="32.0" prefWidth="94.0" styleClass="boton" text="Aceptar" />
+            <Button mnemonicParsing="false" onAction="#limpiar" prefHeight="32.0" prefWidth="94.0" styleClass="boton" text="Limpiar" />
+            <Button alignment="CENTER" mnemonicParsing="false" onAction="#cerrar" prefHeight="70.0" prefWidth="94.0" styleClass="boton" text="Salir" />
+         </children>
+      </VBox>
+      <ScrollPane layoutX="505.0" layoutY="14.0" prefHeight="271.0" prefWidth="230.0" styleClass="primary-color">
+         <content>
+            <VBox fx:id="carritoBox" alignment="TOP_CENTER" prefHeight="282.0" prefWidth="217.0" styleClass="primary-color">
+               <children>
+                  <HBox alignment="CENTER" prefHeight="45.0" prefWidth="163.0" style="-fx-spacing: 10px; -fx-border-color: black; -fx-border-radius: 100px;" styleClass="item">
+                     <children>
+                        <Label text="CARRITO">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <ImageView fitHeight="37.0" fitWidth="58.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@img/carrito.png" />
+                           </image>
+                        </ImageView>
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
