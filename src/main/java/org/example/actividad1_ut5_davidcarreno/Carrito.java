@@ -6,10 +6,12 @@ import java.util.Map;
 public class Carrito {
     private final Map<Producto, Integer> carrito; // Producto y su cantidad
     private double total;
+    private double impuesto;
 
     public Carrito() {
         this.carrito = new HashMap<>();
         this.total = 0.0;
+        this.impuesto = 0.0;
     }
 
     public Map<Producto, Integer> getCarrito() {
@@ -37,6 +39,8 @@ public class Carrito {
             if (total < 0) total = 0; // Asegurar que no sea negativo
         }
     }
+
+
 
     public void listarCarrito() {
         for (Map.Entry<Producto, Integer> entry : carrito.entrySet()) {

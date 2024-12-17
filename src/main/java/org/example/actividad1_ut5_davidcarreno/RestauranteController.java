@@ -1,5 +1,7 @@
 package org.example.actividad1_ut5_davidcarreno;
 
+import com.itextpdf.text.DocumentException;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -12,6 +14,8 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+
+import java.io.IOException;
 
 public class RestauranteController {
     @FXML
@@ -167,7 +171,7 @@ public class RestauranteController {
 
         // Actualizar los totales
         totalTF.setText(String.format("%.2f€", carrito.getTotal()));
-        impuestoTF.setText(String.format("%.2f€", carrito.getTotal() * 0.07)); // 7% de impuestos
+        impuestoTF.setText(String.format("%.2f€", carrito.getTotal() - (carrito.getTotal() / 1.07 ))); // 7% de impuestos
     }
 
     private void aumentarCantidad(Producto p) {
@@ -194,8 +198,20 @@ public class RestauranteController {
     }
 
     @FXML
-    private void aceptar() {
-
-        limpiar();
+    private synchronized void aceptar() {
+        //Crea la factura en un hilo a parte.
+        //Platform.runLater hace que el hilo principal de la interfaz no colapse si se ejcuta otro hilo que modifica la interfaz
+        Platform.runLater(() -> {
+            try {
+                Factura factura = new Factura(carrito);
+                factura.generarFactura("FacturaDePrueba.pdf");
+                factura.abrirFactura();
+                limpiar();
+            } catch (DocumentException e) {
+                throw new RuntimeException(e);
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        });
     }
 }
