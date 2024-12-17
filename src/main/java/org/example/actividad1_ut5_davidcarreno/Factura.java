@@ -23,53 +23,62 @@ import com.itextpdf.layout.element.Image;
 public class Factura {
     private final Carrito carrito;
 
+    // Constructor
     public Factura(Carrito carrito) {
         this.carrito = carrito;
     }
 
+    // Metodo para generar la factura
     public void generarFactura(String archivoSalida) throws DocumentException, IOException {
         Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/Factura/"+ archivoSalida));
         document.open();
 
-        // Fuente personalizada
+        // Crea una fuente personalizada
         Font tituloFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD, 20, BaseColor.BLACK);
         Font subtituloFont = FontFactory.getFont(FontFactory.HELVETICA, 14, BaseColor.DARK_GRAY);
         Font textoFont = FontFactory.getFont(FontFactory.HELVETICA, 12, BaseColor.BLACK);
+
         // Logo
-        String rutaLogo = "/org/example/actividad1_ut5_davidcarreno/img/logo.png";
+        // String rutaLogo = "/org/example/actividad1_ut5_davidcarreno/img/logo.png";
+
         // Encabezado
         Paragraph encabezado = new Paragraph("Factura de Compra", tituloFont);
         encabezado.setAlignment(Element.ALIGN_CENTER);
         document.add(encabezado);
+
         /*
         ImageData imageData = ImageDataFactory.create(Objects.requireNonNull(getClass().getResource(rutaLogo)));
         Image imagen = new Image(imageData);
         imagen.setHorizontalAlignment(HorizontalAlignment.RIGHT);
         document.add((Element) imagen.setAutoScale(true));
         */
+        // Añade elementos al pdf
         document.add(new Paragraph(" "));
         document.add(new Paragraph("Restaurante Lomo De La Herradura.", subtituloFont));
         document.add(new Paragraph("Fecha: " + LocalDate.now(), textoFont));
         document.add(new Paragraph(" "));
 
-        // Tabla de productos
-        PdfPTable tabla = new PdfPTable(4); // 4 columnas
+        // Crea la tabla de productos
+        PdfPTable tabla = new PdfPTable(4); // Establece 4 columnas
         tabla.setWidthPercentage(100);
-        tabla.setWidths(new float[]{4, 1, 1, 1}); // Configuración de ancho por columna
+        tabla.setWidths(new float[]{4, 1, 1, 1}); // Configura el ancho por columna
 
-        // Encabezados de tabla
+        // Crea los encabezados de la tabla
         agregarCeldaEncabezado(tabla, "Producto");
         agregarCeldaEncabezado(tabla, "Cantidad");
         agregarCeldaEncabezado(tabla, "Precio Unitario");
         agregarCeldaEncabezado(tabla, "Subtotal");
 
-        // Datos de productos
+        // Añade los datos de los productos a la tabla
         for (Map.Entry<Producto, Integer> entry : carrito.getCarrito().entrySet()) {
+            // Obtiene el ID del objeto
             Producto producto = entry.getKey();
+            // Obtiene la cantidad
             int cantidad = entry.getValue();
+            // calcula el subtotal por producto
             double subtotal = producto.getPrecio() * cantidad;
-
+            // Agregamos a la tabla las celdas
             agregarCelda(tabla, producto.getNombre(), textoFont);
             agregarCelda(tabla, String.valueOf(cantidad), textoFont);
             agregarCelda(tabla, String.format("%.2f", producto.getPrecio()) + " €", textoFont);
@@ -79,7 +88,7 @@ public class Factura {
         // Añadir tabla al documento
         document.add(tabla);
 
-        // Total sin impuesto
+        // Añade un párrafo para el Total sin impuesto
         Paragraph totalSinImpuesto = new Paragraph(
                 "Total sin impuesto: " +
                         String.format("%.2f", (carrito.getTotal() / 1.07)) + " €",
@@ -91,7 +100,7 @@ public class Factura {
 
         hr(document);
 
-        // impuesto
+        // Añade un párrafo para el Impuesto
         Paragraph impuesto = new Paragraph(
                 "Impuesto: " +
                         String.format("%.2f", (carrito.getTotal() * 0.07)) + " €",
@@ -103,7 +112,7 @@ public class Factura {
 
         hr(document);
 
-        // Total con impuesto
+        // Añade un párrafo para el Impuesto
         Paragraph total = new Paragraph(
                 "Total: " +
                         String.format("%.2f", carrito.getTotal()) + " €",
@@ -115,7 +124,7 @@ public class Factura {
 
         hr(document);
 
-        // Pie de página
+        // Añade un párrafo para el Pie de página
         Paragraph footer = new Paragraph("¡Gracias por su compra!", subtituloFont);
         footer.setAlignment(Element.ALIGN_CENTER);
         document.add(new Paragraph(" "));
@@ -124,6 +133,7 @@ public class Factura {
         document.close();
     }
 
+    // Metodo para agregar un título a la tabla
     private void agregarCeldaEncabezado(PdfPTable tabla, String texto) {
         PdfPCell celda = new PdfPCell(new Phrase(texto));
         celda.setBackgroundColor(BaseColor.LIGHT_GRAY);
@@ -131,11 +141,13 @@ public class Factura {
         tabla.addCell(celda);
     }
 
+    // Metodo para agregar una celda a la tabla
     private void agregarCelda(PdfPTable tabla, String texto, Font fuente) {
         PdfPCell celda = new PdfPCell(new Phrase(texto, fuente));
         celda.setHorizontalAlignment(Element.ALIGN_CENTER);
         tabla.addCell(celda);
     }
+    // Metodo para añadir una linea vertical al documento
     private void hr(Document document){
         try {
             LineSeparator separador = new LineSeparator();
@@ -153,16 +165,19 @@ public class Factura {
         }
     }
 
+    // Metodo sincronizado para abrir la factura generada
     public synchronized void abrirFactura() {
-
             try {
                 String rutaPdf = "src/main/resources/Factura/FacturaDePrueba.pdf";
 
                 File pdf = new File(rutaPdf);
 
                 if (pdf.exists()) {
-                    Desktop desktop = Desktop.getDesktop();
-                    desktop.open(pdf);
+                    // Solo lo abre en WIndows y mac que tienen visor de archivos por defecto
+                    /*Desktop desktop = Desktop.getDesktop();
+                    desktop.open(pdf);*/
+                    // Para Ubuntu creamos un processBuilder que lo abra desde la consola
+                    new ProcessBuilder("xdg-open", pdf.getAbsolutePath()).start();
                 } else {
                     System.out.println("El archivo no existe: " + rutaPdf);
                 }

@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="843.0" styleClass="primary-color" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividad1_ut5_davidcarreno.RestauranteController">
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="843.0" styleClass="primary-color" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividad1_ut5_davidcarreno.RestauranteController">
    <children>
       <VBox fx:id="buttonBox" layoutX="23.0" layoutY="14.0" prefHeight="303.0" prefWidth="230.0" style="-fx-spacing: 10px;">
          <children>
@@ -128,7 +128,7 @@
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
       </TableView>
-      <GridPane fx:id="resultadoGridPane" alignment="CENTER" layoutX="252.0" layoutY="299.0" prefHeight="70.0" prefWidth="225.0">
+      <GridPane fx:id="resultadoGridPane" alignment="CENTER" layoutX="264.0" layoutY="299.0" prefHeight="70.0" prefWidth="225.0">
          <columnConstraints>
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="233.0" minWidth="10.0" prefWidth="122.11639404296875" />
             <ColumnConstraints hgrow="SOMETIMES" maxWidth="174.0" minWidth="10.0" prefWidth="102.88360595703125" />

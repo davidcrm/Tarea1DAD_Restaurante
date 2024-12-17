@@ -38,6 +38,7 @@ public class Producto {
         return precio;
     }
 
+    // Metodo para comparar objetos
     @Override
     public boolean equals(Object obj) {
         if (this == obj) return true;
@@ -46,6 +47,7 @@ public class Producto {
         return nombre.get().equals(producto.getNombre());
     }
 
+    // Devuelve una especie de ID para los objetos y poder compararlo
     @Override
     public int hashCode() {
         return nombre.get().hashCode();

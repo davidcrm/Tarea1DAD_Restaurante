@@ -121,7 +121,7 @@ public class RestauranteController {
     }
 
 
-    // Configurar botones de suma y resta
+    // agrega listeners a los botones de suma y resta
     @FXML
     private void iniciarListeners() {
         int i = 0;
@@ -141,20 +141,21 @@ public class RestauranteController {
     private void actualizarCarritoVisual(Producto p) {
         carritoBox.getChildren().clear();
 
-        // Iterar por los productos en el carrito
+        // Itera por los productos en el carrito
         for (Producto producto : carrito.getCarrito().keySet()) {
             int cantidad = carrito.getCarrito().get(producto);
 
-            // Crear un contenedor para cada producto del carrito (HBox)
+            // Crea un contenedor para cada producto del carrito
             HBox productoHBox = new HBox();
 
-            // Añadir la imagen del producto
+            // Añade la imagen del producto al HBox
             ImageView imagenProducto = new ImageView();
             imagenProducto.setImage(new Image(getClass().getResource("/org/example/actividad1_ut5_davidcarreno/img/" + producto.getNombre() + ".png").toExternalForm()));
+            // Le da tamaño
             imagenProducto.setFitWidth(50);
             imagenProducto.setFitHeight(50);
 
-            // Crear etiquetas para el nombre y la cantidad
+            // Crea etiquetas para el nombre y la cantidad
             Label etiquetaNombre = new Label(producto.getNombre());
             Label etiquetaCantidad = new Label("x" + cantidad);
             etiquetaNombre.getStyleClass().add("texto");
@@ -171,15 +172,18 @@ public class RestauranteController {
 
         // Actualizar los totales
         totalTF.setText(String.format("%.2f€", carrito.getTotal()));
-        impuestoTF.setText(String.format("%.2f€", carrito.getTotal() - (carrito.getTotal() / 1.07 ))); // 7% de impuestos
+        impuestoTF.setText(String.format("%.2f€", carrito.getTotal() - (carrito.getTotal() / 1.07 ))); // 7% de IGIC
     }
 
     private void aumentarCantidad(Producto p) {
+        // añade el producto al carrito
         carrito.anyadirProducto(p);
+        // Actualiza el componente carrito para mostrarlo con el nuevo producto
         actualizarCarritoVisual(p);
     }
 
     private void disminuirCantidad(Producto p) {
+        // Quita el producto del carrito
         carrito.removeProducto(p);
         actualizarCarritoVisual(p);
     }
@@ -194,6 +198,7 @@ public class RestauranteController {
 
     @FXML
     private void cerrar() {
+        // Sale de la aplicacion
         System.exit(0);
     }
 
@@ -213,5 +218,6 @@ public class RestauranteController {
                 throw new RuntimeException(e);
             }
         });
+        System.exit(0);
     }
 }
