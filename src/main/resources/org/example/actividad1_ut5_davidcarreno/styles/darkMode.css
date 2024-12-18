@@ -16,6 +16,7 @@
 .boton{
     -fx-background-color: #383838;
     -fx-text-fill: #E7E7E7;
+    -fx-alignment: center;
     -fx-background-radius: 75;
     -fx-border-color: #E7E7E7;
     -fx-border-radius: 75;
@@ -26,6 +27,7 @@
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
     -fx-cursor: hand;
+    -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.7), 12, 0.5, 2, 2);
 }
 
@@ -45,11 +47,15 @@
     -fx-text-fill: #E7E7E7;
 }
 .item-carrito {
+    -fx-border-radius: 100;
     -fx-border-color: #E7E7E7;
     -fx-background-color: #383838;
-    -fx-border-radius: 100;
-    -fx-spacing: 25px;
+    -fx-spacing: 20px;
     -fx-alignment: center;
+}
+.item-carrito:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
 }
 .texto{
     -fx-text-fill: #E7E7E7;

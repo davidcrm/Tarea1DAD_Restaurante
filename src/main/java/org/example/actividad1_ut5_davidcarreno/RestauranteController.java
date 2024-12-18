@@ -204,12 +204,10 @@ public class RestauranteController {
 
     @FXML
     private synchronized void aceptar() {
-        //Crea la factura en un hilo a parte.
-        //Platform.runLater hace que el hilo principal de la interfaz no colapse si se ejcuta otro hilo que modifica la interfaz
-        Platform.runLater(() -> {
+        //Crea la factura
             try {
-                Factura factura = new Factura(carrito);
-                factura.generarFactura("FacturaDePrueba.pdf");
+                Factura factura = new Factura(carrito, "Factura.pdf");
+                factura.generarFactura();
                 factura.abrirFactura();
                 limpiar();
             } catch (DocumentException e) {
@@ -217,7 +215,7 @@ public class RestauranteController {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-        });
+        // Cierra la aplicación
         System.exit(0);
     }
 }

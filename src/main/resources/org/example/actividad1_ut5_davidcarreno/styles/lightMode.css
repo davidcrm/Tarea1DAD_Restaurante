@@ -13,9 +13,9 @@
     -fx-background-color: #E7E7E7;
     -fx-text-fill: #282828;
     -fx-background-radius: 75;
-    -fx-border-color: #E7E7E7;
+    -fx-border-color: #646464;
     -fx-border-radius: 75;
-    -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.5), 8, 0.5, 2, 2);
+    -fx-effect: dropshadow(gaussian, #7E7E7E, 8, 0.5, 2, 2);
 
 }
 
@@ -23,6 +23,7 @@
     -fx-scale-x: 1.1;
     -fx-scale-y: 1.1;
     -fx-cursor: hand;
+    -fx-alignment: center;
     -fx-effect: dropshadow(gaussian, rgba(255, 255, 255, 0.7), 12, 0.5, 2, 2);
 }
 
@@ -43,12 +44,18 @@
     -fx-text-fill: #282828;
 }
 .item-carrito {
+    -fx-border-radius: 100;
     -fx-border-color: black;
     -fx-background-color: #ffffff;
-    -fx-border-radius: 100;
     -fx-spacing: 25px;
     -fx-alignment: center;
 }
+
+.item-carrito:hover{
+    -fx-scale-x: 1.1;
+    -fx-scale-y: 1.1;
+}
+
 .texto{
     -fx-text-fill: #282828;
     -fx-alignment: center;

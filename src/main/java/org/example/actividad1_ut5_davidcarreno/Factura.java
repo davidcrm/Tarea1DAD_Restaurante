@@ -17,20 +17,22 @@ import java.util.Objects;
 import com.itextpdf.text.pdf.draw.LineSeparator;
 import com.itextpdf.io.image.ImageDataFactory;
 import com.itextpdf.layout.element.Image;
-
+import javafx.application.Platform;
 
 
 public class Factura {
     private final Carrito carrito;
-
+    private String archivoSalida;
+    private final Document document = new Document();
     // Constructor
-    public Factura(Carrito carrito) {
+    public Factura(Carrito carrito, String archivoSalida) {
         this.carrito = carrito;
+        this.archivoSalida = archivoSalida;
     }
 
     // Metodo para generar la factura
-    public void generarFactura(String archivoSalida) throws DocumentException, IOException {
-        Document document = new Document();
+    public void generarFactura() throws DocumentException, IOException {
+
         PdfWriter.getInstance(document, new FileOutputStream("src/main/resources/Factura/"+ archivoSalida));
         document.open();
 
@@ -165,25 +167,24 @@ public class Factura {
         }
     }
 
-    // Metodo sincronizado para abrir la factura generada
+    // Metodo sincronizado para abrir la factura generada en un hilo
     public synchronized void abrirFactura() {
+       new Thread(() -> {
             try {
-                String rutaPdf = "src/main/resources/Factura/FacturaDePrueba.pdf";
-
+                String rutaPdf = "src/main/resources/Factura/" + archivoSalida;
                 File pdf = new File(rutaPdf);
 
-                if (pdf.exists()) {
-                    // Solo lo abre en WIndows y mac que tienen visor de archivos por defecto
-                    /*Desktop desktop = Desktop.getDesktop();
-                    desktop.open(pdf);*/
-                    // Para Ubuntu creamos un processBuilder que lo abra desde la consola
-                    new ProcessBuilder("xdg-open", pdf.getAbsolutePath()).start();
-                } else {
-                    System.out.println("El archivo no existe: " + rutaPdf);
-                }
+                // Solo sirve para abrir el pdf en Wndows y mac que tienen visor de archivos por defecto
+                Desktop desktop = Desktop.getDesktop();
+                desktop.open(pdf);
+
+                // Para Ubuntu creamos un processBuilder que lo abra desde la consola (clase ProcessBuilder vista en PGV)
+                //new ProcessBuilder("xdg-open", pdf.getAbsolutePath()).start();
+
+                System.out.println();
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
+       }).start();
     }
 }

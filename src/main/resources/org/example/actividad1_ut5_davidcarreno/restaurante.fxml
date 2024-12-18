@@ -17,7 +17,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="392.0" prefWidth="843.0" styleClass="primary-color" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividad1_ut5_davidcarreno.RestauranteController">
+<AnchorPane fx:id="parent" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="432.0" prefWidth="918.0" styleClass="primary-color" xmlns="http://javafx.com/javafx/23" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.example.actividad1_ut5_davidcarreno.RestauranteController">
    <children>
       <VBox fx:id="buttonBox" layoutX="23.0" layoutY="14.0" prefHeight="303.0" prefWidth="230.0" style="-fx-spacing: 10px;">
          <children>
@@ -150,7 +150,7 @@
                </font></Label>
          </children>
       </GridPane>
-      <VBox alignment="CENTER" layoutX="738.0" layoutY="33.0" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 10px;">
+      <VBox alignment="CENTER" layoutX="803.0" layoutY="60.0" prefHeight="200.0" prefWidth="100.0" style="-fx-spacing: 10px;">
          <children>
             <Button mnemonicParsing="false" onAction="#cambiarModo" styleClass="boton">
                <graphic>
@@ -166,12 +166,12 @@
             <Button alignment="CENTER" mnemonicParsing="false" onAction="#cerrar" prefHeight="70.0" prefWidth="94.0" styleClass="boton" text="Salir" />
          </children>
       </VBox>
-      <ScrollPane layoutX="502.0" layoutY="78.0" prefHeight="271.0" prefWidth="237.0" styleClass="primary-color">
+      <ScrollPane layoutX="502.0" layoutY="78.0" prefHeight="299.0" prefWidth="292.0" styleClass="primary-color">
          <content>
-            <VBox fx:id="carritoBox" alignment="TOP_CENTER" prefHeight="282.0" prefWidth="217.0" styleClass="primary-color" />
+            <VBox fx:id="carritoBox" alignment="TOP_CENTER" prefHeight="299.0" prefWidth="274.0" style="-fx-padding: 15px; -fx-spacing: 10px;" styleClass="primary-color" />
          </content>
       </ScrollPane>
-      <HBox alignment="CENTER" layoutX="530.0" layoutY="16.0" prefHeight="45.0" prefWidth="163.0" style="-fx-spacing: 10px; -fx-border-color: black; -fx-border-radius: 100px;" styleClass="item-carrito">
+      <HBox alignment="CENTER" layoutX="564.0" layoutY="16.0" prefHeight="45.0" prefWidth="163.0" style="-fx-spacing: 10px; -fx-border-color: black; -fx-border-radius: 100px;" styleClass="item-carrito">
          <children>
             <Label styleClass="texto" text="CARRITO">
                <font>
